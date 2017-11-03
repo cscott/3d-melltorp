@@ -1,7 +1,7 @@
 /* 3d printer enclosure from Ikea Melltorp table. Connector pieces. */
 
 /* [Global] */
-part = "both"; // [top,top-wrap,bottom]
+part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top)]
 
 /* [Hidden] */
 function inch() = 25.4;
@@ -21,21 +21,21 @@ function ring_thick() = 6.1; /* measured */
 function leg_inset() = [4,0]; // from 70.2 to 69.4
 function table_thick() = 18.5; // 18.2 with a little bit of clearance
 function plexi_thick() = 2.2; // including clearance (measured 1.8mm)
-function top_thick() = 2;
+function above_thick() = 2; // thickness underneath leg holder
 function plexi_guide_thick() = 3.5;
 
 
 piece(which=part);
 
 module piece(which="both") {
-  if (which=="bottom" || which=="both") {
-    bottom_bracket();
+  if (which=="below" || which=="both") {
+    below_bracket();
   }
-  if (which=="top" || which=="top-wrap" || which=="both") {
-    top_bracket();
+  if (which=="above" || which=="above-wrap" || which=="both") {
+    above_bracket();
   }
-  if (which=="top-wrap" || which=="both") {
-    top_wrapper(shrink=(which=="top-wrap"));
+  if (which=="above-wrap" || which=="both") {
+    above_wrapper(shrink=(which=="above-wrap"));
   }
 }
 
@@ -52,7 +52,7 @@ module middle(wall=[0,0], extra=[0,0]) {
   }
 }
 
-module bottom_bracket() {
+module below_bracket() {
   magnet_y = 14;
   height = magnet_y + magnet_diam()/2 + magnet_margin();
   width = magnet_diam() + 2*magnet_margin();
@@ -80,7 +80,7 @@ module bottom_bracket() {
   }
 }
 
-module top_wrapper(shrink=false) {
+module above_wrapper(shrink=false) {
   leg_outer_size = [25.5, 50.5];
   size = leg_inset() + leg_outer_size;
   wall = [-(leg_inset().x - plexi_thick() - plexi_guide_thick()),
@@ -88,14 +88,14 @@ module top_wrapper(shrink=false) {
   epsilon = .1;
   difference() {
     translate([-wall.x,-wall.y,0])
-      cube([size.x+wall.x,size.y+wall.y,middle_thick() + table_thick() + top_thick() - epsilon]);
+      cube([size.x+wall.x,size.y+wall.y,middle_thick() + table_thick() + above_thick() - epsilon]);
     translate([0,0,middle_thick() - epsilon])
       cube([size.x + epsilon, size.y + epsilon, table_thick() + 2*epsilon]);
   }
   middle(wall=wall, extra=shrink?[0,17]:[0,0]);
 }
 
-module top_bracket() {
+module above_bracket() {
   leg_outer_size = [25.5, 50.5];
   leg_inner_size = [22.4, 47.3];
   leg_core_size = [19.6,44.3];
@@ -109,10 +109,10 @@ module top_bracket() {
   union() translate([0,0,middle_thick() + table_thick()]) {
     *cube([leg_inset().x + leg_outer_size.x,
           leg_inset().y + leg_outer_size.y,
-          top_thick()]);
+          above_thick()]);
     translate([leg_inset().x + leg_outer_size.x/2,
                leg_inset().y + leg_outer_size.y/2,
-               top_thick()-epsilon]) {
+               above_thick()-epsilon]) {
       translate([0,0,(leg_holder_height + epsilon)/2])
       cube([leg_core_size.x, leg_core_size.y, leg_holder_height + epsilon],
            center=true);
@@ -125,10 +125,10 @@ module top_bracket() {
       difference() {
         translate([-leg_outer_size.x/2 - plexi_thick() - plexi_guide_thick(),
                    -leg_outer_size.y/2 - plexi_thick() - plexi_guide_thick(),
-                   -(top_thick()-epsilon)])
+                   -(above_thick()-epsilon)])
           cube([leg_outer_size.x + plexi_thick() + plexi_guide_thick(),
                 leg_outer_size.y + plexi_thick() + plexi_guide_thick(),
-                plexi_guide_height + top_thick()]);
+                plexi_guide_height + above_thick()]);
         translate([-leg_outer_size.x/2 - plexi_thick(),
                    -leg_outer_size.y/2 - plexi_thick(),
                    epsilon])
@@ -143,10 +143,10 @@ module top_bracket() {
              leg_inset().y + leg_outer_size.y/2,
              middle_thick() + table_thick() - epsilon]) {
     cylinder(d=screw_hole + inner_clear(),
-             h=top_thick() + leg_holder_height + 2*epsilon);
+             h=above_thick() + leg_holder_height + 2*epsilon);
     translate([0,0,screw_deep])
       cylinder(d=screw_head_hole + inner_clear(),
-               h=top_thick() + leg_holder_height + 2*epsilon);
+               h=above_thick() + leg_holder_height + 2*epsilon);
   }
   }
 }

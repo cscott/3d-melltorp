@@ -1,0 +1,55 @@
+{
+    "id":"6400396d-9777-424c-8209-8ab2d352c14b",
+    "title":"Enclosure for 3d printer based on Ikea Melltorp tables",
+    "url":"https://github.com/cscott/3d-melltorp",
+    "downloadUrl":"https://github.com/cscott/3d-melltorp/zipball/master",
+    "authors":[
+       {
+          "name":"C. Scott Ananian",
+          "url":"https://cscott.net",
+          "email":"things@cscott.net"
+       }
+    ],
+    "created": "2017-11-03T11:51:10-04:00",
+    "licenses":[
+       "GPL-2.0+"
+    ],
+    "thumbnailUrls":[
+        "imgs/IMG_20171101_025035.jpg"
+    ],
+    "media":[
+       "PLA"
+    ],
+    "categories":[
+       "FFM"
+    ],
+    "tags":[
+        "enclosure", "ikea", "melltorp"
+    ],
+    "billOfMaterials":[
+       {
+          "partNumber":"1",
+          "description":"Enclosure pieces (OpenSCAD source)",
+          "url":"melltorp.scad",
+          "type":"source"
+       },
+       {
+          "partNumber":"2a",
+          "description":"Leg coupler (screws into table top)",
+          "url":"melltorp-stl/melltorp-above.stl",
+          "type":"generated"
+       },
+       {
+          "partNumber":"2b",
+          "description":"Leg coupler (wraps around table top)",
+          "url":"melltorp-stl/melltorp-above-wrap.stl",
+          "type":"generated"
+       },
+       {
+          "partNumber":"3",
+          "description":"Magnet holder (mounts below table top)",
+          "url":"melltorp-stl/melltorp-below.stl",
+          "type":"generated"
+       }
+    ]
+}
