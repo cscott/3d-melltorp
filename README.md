@@ -26,16 +26,16 @@ three high if you wanted an enclosure for two printers.
 
 Follow the Ikea instructions for assembling the bottom table.  After
 assembly, flip the table upright and unscrew the four allen-head bolts
-attaching the table top to the leg assembly.  Slide four printer leg
-holder pieces (part 2a) over the corners of the table, inserting the
-white Ikea spacers into the cutouts provided, then reattach the table
-top using the allen-head bolts.
+attaching the tabletop to the leg assembly.  Slide four printer leg
+holder pieces ([`melltorp-above-wrap.stl`]) over the corners of the
+table, inserting the white Ikea spacers into the cutouts provided,
+then reattach the tabletop using the allen-head bolts.
 
 <br clear="both" />
 <img src="./imgs/IMG_20171101_024427.jpg" width=150 align="right"/>
 
-Alternatively, you could use part 2b and screw the leg holders directly
-into the table top.
+Alternatively, you could use [`melltorp-above.stl`] and screw the leg
+holders directly into the table top.
 
 <br clear="both" />
 
@@ -44,8 +44,9 @@ into the table top.
 <img src="./imgs/IMG_20171101_024508.jpg" width=150 align="right"/>
 
 Again, follow the Ikea instructions to assemble the top table, but
-sandwich the four magnet holders (part 3) between the legs and table
-top, using the white Ikea spacers in the provided cutouts for alignment.
+sandwich the four magnet holders ([`melltorp-below.stl`]) between the
+legs and tabletop, using the white Ikea spacers in the provided
+cutouts for alignment.
 
 <br clear="both" />
 <img src="./imgs/IMG_20171101_024500.jpg" width=150 align="right"/>
@@ -63,14 +64,37 @@ table, then stack the top table on top of the bottom table.
 
 ### Step 4: Trim plexiglass
 
-Trim 4 sheets of [plexiglass](https://www.lowes.com/pd/OPTIX-0-08-in-x-30-in-x-30-in-Clear-Acrylic-Sheet/3978817) to 28" x 29.25".  (Note that the link
-goes to Lowe's, which sells "30in x 30in" sheets of plexiglass which are
-really 28" x 30".  If you get your plexiglass from a different source,
-you might want to extend the 28" side up to 28.5" for a better seal.)
+Trim 4 sheets of [28"x30" plexiglass] to 28" x 29.25".  (Note that the
+link goes to Lowe's, which sells "30in x 30in" sheets of plexiglass
+which are really 28" x 30".  If you get your plexiglass from a
+different source, you might want to extend the 28" side up to 28.5"
+for a better seal.)
 
 ### Step 5: Install magnets
 
+Insert magnets into the indents by the table legs.  Take care to
+ensure the polarities of the magnets are consistent.  Now insert
+magnets into the magnet mount rings ([`melltorp-holder.stl`]), again
+taking care to ensure that the polarity is consistent and that the
+open end of the mount ring is attracted to the open side of the table
+leg magnets.  Slide the plexiglass into the channels at the bottom,
+and use the mounted magnets to secure the top of the plexiglass.  Use
+some superglue to affix the magnet mounts permanently to the
+plexiglass once you have things lined up.
+
 ### Step 6: Install handles
+
+Use M3 x 12mm socket head screws and M3 nuts to attach handles
+([`melltorp-handle-top.stl`]) to either side of the plexiglass.
+Note that I had some issues with the plexiglass cracking when I
+drilled the screw holes for mounting; you may wish to dispense
+with the screws and just glue the handles in place.
+
+I find it most convenient to have a handle for gripping on both
+sides of the plexiglass, so I can easily lift the sheets into
+place or out of the way, but if you want to save some printing
+time you can glue handles on only one side, or else use
+[`melltorp-handle-bottom.stl`] on the back side.
 
 ## Related
 
@@ -80,6 +104,14 @@ you might want to extend the 28" side up to 28.5" for a better seal.)
 
 These designs are licensed under the [GPLv2+].
 
-[GPLv2+]: https://spdx.org/licenses/GPL-2.0+.html
 [Lack]: http://www.ikea.com/us/en/catalog/products/20011408/
 [Melltorp]: http://www.ikea.com/us/en/catalog/products/S39011781/
+[28"x30" plexiglass]: https://www.lowes.com/pd/OPTIX-0-08-in-x-30-in-x-30-in-Clear-Acrylic-Sheet/3978817
+[10x3mm magnets]: https://amazon.com/gp/product/B01MFHNHNW/
+[`melltorp-above-wrap.stl`]: ./melltorp-stl/melltorp-above-wrap.stl
+[`melltorp-above.stl`]: ./melltorp-stl/melltorp-above.stl
+[`melltorp-below.stl`]: ./melltorp-stl/melltorp-below.stl
+[`melltorp-holder.stl`]: ./melltorp-stl/melltorp-holder.stl
+[`melltorp-handle-top.stl`]: ./melltorp-stl/melltorp-handle-top.stl
+[`melltorp-handle-bottom.stl`]: ./melltorp-stl/melltorp-handle-bottom.stl
+[GPLv2+]: https://spdx.org/licenses/GPL-2.0+.html

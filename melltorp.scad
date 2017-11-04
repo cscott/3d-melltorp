@@ -1,7 +1,7 @@
 /* 3d printer enclosure from Ikea Melltorp table. Connector pieces. */
 
 /* [Global] */
-part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top),holder:Magnet mount (on plexiglass),handle-top:Outside handle,handle-bottom:Inside handle]
+part = "holder"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top),holder:Magnet mount (on plexiglass),handle-top:Outside handle,handle-bottom:Inside handle]
 
 /* [Hidden] */
 function inch() = 25.4;
@@ -191,7 +191,7 @@ module plexi_handle(is_top=true) {
     for (i=[1,-1]) scale([i,1,1]) translate([width/2 - inset.x/2, 0, 0]) {
       translate([0,0,-1])
         cylinder(d=4, h=depth+2);
-      translate([0,0,is_top ? 6 : 1.5])
+      translate([0,0,is_top ? 4 : 1.5])
         cylinder(d=9, h=depth);
     }
   }

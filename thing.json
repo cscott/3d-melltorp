@@ -38,36 +38,46 @@
           "description":"Leg coupler (wraps around table top)",
           "url":"melltorp-stl/melltorp-above-wrap.stl",
           "type":"generated",
+          "unit": "EA",
+          "quantity": 4,
           "thumbnailUrl": "imgs/IMG_20171101_024427.jpg"
        },
        {
           "partNumber":"2b",
-          "description":"Leg coupler (screws into table top)",
+          "description":"Leg coupler (screws into table top) [optional]",
           "url":"melltorp-stl/melltorp-above.stl",
-          "type":"generated"
+          "type":"generated",
+          "unit": "EA",
+          "quantity": 4
        },
        {
           "partNumber":"3",
           "description":"Magnet holder (mounts below table top)",
           "url":"melltorp-stl/melltorp-below.stl",
           "type":"generated",
+          "unit": "EA",
+          "quantity": 4,
           "thumbnailUrl": "imgs/IMG_20171101_025051.jpg"
        },
        {
           "partNumber":"4",
           "description":"Magnet mount (glues to plexiglass)",
           "url":"melltorp-stl/melltorp-holder.stl",
-          "type":"generated"
+          "type":"generated",
+          "unit": "EA",
+          "quantity": 8
        },
        {
           "partNumber":"5",
           "description":"Plexiglass handle (outside)",
           "url":"melltorp-stl/melltorp-handle-top.stl",
-          "type":"generated"
+          "type":"generated",
+          "unit": "EA",
+          "quantity": 16
        },
        {
           "partNumber":"6",
-          "description":"Plexiglass handle (inside)",
+          "description":"Plexiglass handle (inside) [optional]",
           "url":"melltorp-stl/melltorp-handle-bottom.stl",
           "type":"generated"
        },
