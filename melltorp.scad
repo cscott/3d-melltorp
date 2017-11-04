@@ -1,7 +1,7 @@
 /* 3d printer enclosure from Ikea Melltorp table. Connector pieces. */
 
 /* [Global] */
-part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top),holder,handle-top,handle-bottom]
+part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top),holder:Magnet mount (on plexiglass),handle-top:Outside handle,handle-bottom:Inside handle]
 
 /* [Hidden] */
 function inch() = 25.4;
@@ -40,10 +40,11 @@ module piece(which="both") {
   if (which=="holder") {
     magnet_holder();
   }
-  if (which=="handle-top") {
+  if (which=="handle-top" || which=="handle-both") {
     plexi_handle(is_top=true);
   }
-  if (which=="handle-bottom") {
+  if (which=="handle-bottom" || which=="handle-both") {
+    translate([0,0,-2]) // thickness of plexi
     plexi_handle(is_top=false);
   }
 }
@@ -163,12 +164,12 @@ module above_bracket() {
 module magnet_holder() {
   epsilon = .1;
   margin = 2;
-  inset = 0.5;
+  inset = -0.5;
   difference() {
     cylinder(d=magnet_diam() + 2*margin, h=magnet_depth() - inset + margin);
-    translate([0,0,-inset-epsilon]) {
-      cylinder(d=magnet_diam() + inner_clear(), h=magnet_depth()+epsilon);
-      cylinder(d=magnet_diam() - 2*margin, h=magnet_depth() + inset + margin + 2*epsilon);
+    translate([0,0,-epsilon]) {
+      cylinder(d=magnet_diam() + inner_clear(), h=magnet_depth() - inset + epsilon);
+      cylinder(d=magnet_diam() - 2*margin, h=magnet_depth() - inset + margin + 2*epsilon);
     }
   }
 }
@@ -190,7 +191,7 @@ module plexi_handle(is_top=true) {
     for (i=[1,-1]) scale([i,1,1]) translate([width/2 - inset.x/2, 0, 0]) {
       translate([0,0,-1])
         cylinder(d=4, h=depth+2);
-      translate([0,0,inset.z])
+      translate([0,0,is_top ? 6 : 1.5])
         cylinder(d=9, h=depth);
     }
   }

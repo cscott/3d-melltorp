@@ -55,6 +55,24 @@
        },
        {
           "partNumber":"4",
+          "description":"Magnet mount (glues to plexiglass)",
+          "url":"melltorp-stl/melltorp-holder.stl",
+          "type":"generated"
+       },
+       {
+          "partNumber":"5",
+          "description":"Plexiglass handle (outside)",
+          "url":"melltorp-stl/melltorp-handle-top.stl",
+          "type":"generated"
+       },
+       {
+          "partNumber":"6",
+          "description":"Plexiglass handle (inside)",
+          "url":"melltorp-stl/melltorp-handle-bottom.stl",
+          "type":"generated"
+       },
+       {
+          "partNumber":"7",
           "description":"Ikea Melltorp table",
           "unit": "EA",
           "quantity": 2,
@@ -62,7 +80,7 @@
           "thumbnailUrl": "imgs/melltorp.jpg"
        },
        {
-          "partNumber":"5",
+          "partNumber":"8",
           "description": "28\" x 30\" x .08\" plexiglass",
           "unit": "EA",
           "quantity": 4,
@@ -70,7 +88,7 @@
           "thumbnailUrl": "imgs/plexiglass.jpg"
        },
        {
-          "partNumber":"6",
+          "partNumber":"9",
           "description": "10mm x 3mm Neodymium magnets",
           "unit": "EA",
           "quantity": 16,
