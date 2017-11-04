@@ -1,7 +1,7 @@
 /* 3d printer enclosure from Ikea Melltorp table. Connector pieces. */
 
 /* [Global] */
-part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top)]
+part = "both"; // [above:Leg coupler (above table top),above-wrap:Leg coupler (wraps around table top),below:Magnet holder (below table top),holder,handle-top,handle-bottom]
 
 /* [Hidden] */
 function inch() = 25.4;
@@ -36,6 +36,15 @@ module piece(which="both") {
   }
   if (which=="above-wrap" || which=="both") {
     above_wrapper(shrink=(which=="above-wrap"));
+  }
+  if (which=="holder") {
+    magnet_holder();
+  }
+  if (which=="handle-top") {
+    plexi_handle(is_top=true);
+  }
+  if (which=="handle-bottom") {
+    plexi_handle(is_top=false);
   }
 }
 
@@ -148,5 +157,107 @@ module above_bracket() {
       cylinder(d=screw_head_hole + inner_clear(),
                h=above_thick() + leg_holder_height + 2*epsilon);
   }
+  }
+}
+
+module magnet_holder() {
+  epsilon = .1;
+  margin = 2;
+  inset = 0.5;
+  difference() {
+    cylinder(d=magnet_diam() + 2*margin, h=magnet_depth() - inset + margin);
+    translate([0,0,-inset-epsilon]) {
+      cylinder(d=magnet_diam() + inner_clear(), h=magnet_depth()+epsilon);
+      cylinder(d=magnet_diam() - 2*margin, h=magnet_depth() + inset + margin + 2*epsilon);
+    }
+  }
+}
+
+module plexi_handle(is_top=true) {
+  width=90; height=27; depth=is_top ? 10 : 4;
+  round=2;
+  inset=[14, 5, 1.5/*floor thickness*/];
+  scale([1,1,is_top?1:-1])
+  difference() {
+    translate([0,0,depth/2-round]) {
+      round_rect([width, height, depth], r=[round, round, 10], center=true);
+    }
+    translate([0,0,-round]) {
+      cube([width*2, height*2, round*2], center=true);
+    }
+    if (is_top) translate([0,0,depth + inset.z])
+      round_rect([width-2*inset.x, height-2*inset.y, 2*depth], r=[round, round, 6], center=true);
+    for (i=[1,-1]) scale([i,1,1]) translate([width/2 - inset.x/2, 0, 0]) {
+      translate([0,0,-1])
+        cylinder(d=4, h=depth+2);
+      translate([0,0,inset.z])
+        cylinder(d=9, h=depth);
+    }
+  }
+}
+
+function max(x,y) = (x > y) ? x : y;
+
+// uses the same radius for x and y, but we can live with that.
+module round_rect(size=[1,1,1], r=[0,0,0], center=false) {
+  s = size; // abbreviation
+  r2 = max(r.x, r.y); // XXX sigh
+  minkowski() {
+    round_rect2a([s.x-r2, s.y-r2, s.z-r2], r.z);
+    sphere(r=r2);
+  }
+}
+
+// XXX the corners in this are sharp. :(
+module round_rect2(size=[1,1,1], r=[0,0,0], center=false) {
+  s = size; // abbreviation
+  s2 = size/2;
+  d = 2*r;
+  translate(center ? [0,0,0] : [s2.x, s2.y, s2.z]) intersection() {
+    round_rect2a([s.x, s.y, s.z], r.z);
+    rotate([90,0,0]) round_rect2a([s.x, s.z, s.y], r.y);
+    rotate([0,90,0]) round_rect2a([s.z, s.y, s.x], r.x);
+  }
+}
+
+module round_rect2a(s, r) {
+  if (r > 0) {
+    cube([s.x-2*r, s.y, s.z], center=true);
+    cube([s.x, s.y-2*r, s.z], center=true);
+    for (i=[1,-1]) for (j=[1,-1]) scale([i,j,1])
+      translate([s.x/2 - r, s.y/2 - r, 0])
+        cylinder(r=r, h=s.z, center=true);
+  } else {
+    cube([s.x, s.y, s.z], center=true);
+  }
+}
+
+
+// This one rounds the top edge more than I'd like.
+module round_rect3(size=[1,1,1], r=[0,0,0], center=false) {
+  s = size; // abbreviation
+  s2 = size/2;
+  d = 2*r;
+  maxr = max(r.x, max(r.y, r.z));
+  translate(center ? [0,0,0] : [s2.x, s2.y, s2.z]) {
+    if (maxr<=0) cube([s.x, s.y, s.z], center=true);
+    if (r.x>0) cube([s.x,     s.y-d.y, s.z-d.z], center=true);
+    if (r.y>0) cube([s.x-d.x, s.y,     s.z-d.z], center=true);
+    if (r.z>0) cube([s.x-d.x, s.y-d.y, s.z     ], center=true);
+    for (i=[-1,1]) for (j=[-1,1]) {
+      scale([1,i,j]) translate([         0, s2.y - r.y, s2.z - r.z])
+        if (r.y>0 && r.z>0) scale([1,r.y/maxr,r.z/maxr])
+          rotate([0,90,0]) cylinder(r=maxr, h=s.x-d.x, center=true);
+      scale([i,1,j]) translate([s2.x - r.x,          0, s2.z - r.z])
+        if (r.x>0 && r.z>0) scale([r.x/maxr,1,r.z/maxr])
+          rotate([90,0,0]) cylinder(r=maxr, h=s.y-d.y, center=true);
+      scale([i,j,1]) translate([s2.x - r.x, s2.y - r.y,          0])
+        if (r.x>0 && r.y>0) scale([r.x/maxr,r.y/maxr,1])
+          rotate([ 0,0,0]) cylinder(r=maxr, h=s.z-d.z, center=true);
+      for (k=[-1,1]) scale([i,j,k])
+        translate([s2.x - r.x, s2.y - r.y, s2.z - r.z])
+          if (r.x>0 && r.y>0 && r.z>0) scale(r/maxr)
+            sphere(r=maxr);
+    }
   }
 }
