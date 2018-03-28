@@ -35,7 +35,7 @@
        },
        {
           "partNumber":"2a",
-          "description":"Leg coupler (wraps around table top)",
+          "description":"Leg coupler (wraps around table top) [2 of these should be mirrored]",
           "url":"melltorp-stl/melltorp-above-wrap.stl",
           "type":"generated",
           "unit": "EA",
@@ -44,7 +44,7 @@
        },
        {
           "partNumber":"2b",
-          "description":"Leg coupler (screws into table top) [optional]",
+          "description":"Leg coupler (screws into table top) [optional] [2 of these should be mirrored]",
           "url":"melltorp-stl/melltorp-above.stl",
           "type":"generated",
           "unit": "EA",
@@ -52,7 +52,7 @@
        },
        {
           "partNumber":"3",
-          "description":"Magnet holder (mounts below table top)",
+          "description":"Magnet holder (mounts below table top) [2 of these should be mirrored]",
           "url":"melltorp-stl/melltorp-below.stl",
           "type":"generated",
           "unit": "EA",

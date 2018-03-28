@@ -27,7 +27,8 @@ three high if you wanted an enclosure for two printers.
 Follow the Ikea instructions for assembling the bottom table.  After
 assembly, flip the table upright and unscrew the four allen-head bolts
 attaching the tabletop to the leg assembly.  Slide four printer leg
-holder pieces ([`melltorp-above-wrap.stl`]) over the corners of the
+holder pieces ([`melltorp-above-wrap.stl`]; 2 of these will need to be
+mirrored) over the corners of the
 table, inserting the white Ikea spacers into the cutouts provided,
 then reattach the tabletop using the allen-head bolts.
 
@@ -35,7 +36,8 @@ then reattach the tabletop using the allen-head bolts.
 <img src="./imgs/IMG_20171101_024427.jpg" width=150 align="right"/>
 
 Alternatively, you could use [`melltorp-above.stl`] and screw the leg
-holders directly into the table top.
+holders directly into the table top. (Again, two should be printed out
+as mirror images.)
 
 <br clear="both" />
 
@@ -44,7 +46,8 @@ holders directly into the table top.
 <img src="./imgs/IMG_20171101_024508.jpg" width=150 align="right"/>
 
 Again, follow the Ikea instructions to assemble the top table, but
-sandwich the four magnet holders ([`melltorp-below.stl`]) between the
+sandwich the four magnet holders ([`melltorp-below.stl`], 2 will be mirrored)
+between the
 legs and tabletop, using the white Ikea spacers in the provided
 cutouts for alignment. I also recommend using [foam sealing tape]
 between the table frame and table top to seal the gap.
